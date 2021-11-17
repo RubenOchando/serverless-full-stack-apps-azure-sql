@@ -23,7 +23,13 @@ This project features the following capabilities.
 ### Microsoft Learn Path
 
 Learn  at your own pace, following the interactive tutorial, that will guide you through the building of the entire solution: https://aka.ms/azuremodernapps 
+https://docs.microsoft.com/en-us/learn/modules/deploy-backend-apis/3-exercise-deploy-resources?pivots=csharp
+
 
 ### YouTube Video
 
 The authors discuss the architecture, the key points and the details of each technology used and each choice made: https://youtu.be/XBxBC959tLg
+
+
+#Install
+npm install -g azure-functions-core-tools@3 --unsafe-perm true
