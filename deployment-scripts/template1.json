@@ -2,47 +2,26 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "connections_office365_name": {
-            "defaultValue": "office365",
-            "type": "String"
-        },
         "workflows_bus_logic_app_name": {
             "defaultValue": "bus-logic-app",
             "type": "String"
         },
-        "subscription_id": {
-            "defaultValue": null,
-            "type": "String"
-        },
-        "location": {
-            "defaultValue": null,
+        "connections_office365_name": {
+            "defaultValue": "/subscriptions/09277bbe-69f1-4e20-87e2-1bcf288e3aa0/resourceGroups/PointtakenOperations/providers/Microsoft.Web/connections/office365_bus",
             "type": "String"
         }
     },
     "variables": {},
     "resources": [
         {
-            "type": "Microsoft.Web/connections",
-            "apiVersion": "2016-06-01",
-            "name": "[parameters('connections_office365_name')]",
-            "location": "[parameters('location')]",
-            "kind": "V1",
-            "properties": {
-                "displayName": "Office365",
-                "customParameterValues": {},
-                "api": {
-                    "id": "[concat('/subscriptions/', parameters('subscription_id'), '/providers/Microsoft.Web/locations/', parameters('location'), '/managedApis/', parameters('connections_office365_name'))]"
-                }
-            }
-        },
-        {
             "type": "Microsoft.Logic/workflows",
             "apiVersion": "2017-07-01",
             "name": "[parameters('workflows_bus_logic_app_name')]",
-            "location": "[parameters('location')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/connections', parameters('connections_office365_name'))]"
-            ],
+            "location": "norwayeast",
+            "tags": {
+                "last-updated-by": "Ruben Ochando",
+                "last-review": "2021-11-18"
+            },
             "properties": {
                 "state": "Enabled",
                 "definition": {
@@ -76,18 +55,18 @@
                         }
                     },
                     "actions": {
-                        "Send_an_email_(V2)_2": {
+                        "Send_an_email_(V2)": {
                             "runAfter": {},
                             "type": "ApiConnection",
                             "inputs": {
                                 "body": {
-                                    "Body": "<p>Hello,<br>\n<br>\nIf you would like to catch the bus, you should head to the bus stop now. Your bus, Route @{triggerBody()?['value1']}, is @{triggerBody()?['value2']}ing the GeoFence.<br>\n<br>\n#AzureSQL #CatchTheBus</p>",
+                                    "Body": "<p>&lt;p&gt;Hello,&lt;br&gt;\\n&lt;br&gt;\\nIf you would like to catch the bus, you should head to the bus stop now. Your bus, Route @{triggerBody()?['value1']}, is @{triggerBody()?['value2']}ing the GeoFence.&lt;br&gt;\\n&lt;br&gt;\\n#AzureSQL #CatchTheBus&lt;/p&gt;</p>",
                                     "Subject": "Your bus, Route @{triggerBody()?['value1']}, is @{triggerBody()?['value2']}ing the GeoFence!",
-                                    "To": ""
+                                    "To": "ro@ptaken.no"
                                 },
                                 "host": {
                                     "connection": {
-                                        "name": "@parameters('$connections')['office365']['connectionId']"
+                                        "name": "@parameters('$connections')['office365_bus']['connectionId']"
                                     }
                                 },
                                 "method": "post",
@@ -100,10 +79,10 @@
                 "parameters": {
                     "$connections": {
                         "value": {
-                            "outlook": {
-                                "connectionId": "[resourceId('Microsoft.Web/connections', parameters('connections_office365_name'))]",
-                                "connectionName": "office365",
-                                "id": "[concat('/subscriptions/', parameters('subscription_id'),'/providers/Microsoft.Web/locations/', parameters('location'), '/managedApis/office365')]"
+                            "office365_bus": {
+                                "connectionId": "[parameters('connections_office365_name')]",
+                                "connectionName": "office365_bus",
+                                "id": "/subscriptions/09277bbe-69f1-4e20-87e2-1bcf288e3aa0/providers/Microsoft.Web/locations/norwayeast/managedApis/office365"
                             }
                         }
                     }

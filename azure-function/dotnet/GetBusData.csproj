@@ -7,11 +7,18 @@
 		<UserSecretsId>6e411168-c629-497f-a624-9f8fcbcaef33</UserSecretsId>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Dapper" Version="2.0.123"/>
-		<PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Storage" Version="5.0.0"/>
-		<PackageReference Include="Microsoft.Data.SqlClient" Version="3.0.1"/>
-		<PackageReference Include="Microsoft.NET.Sdk.Functions" Version="4.0.1"/>
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
+		<PackageReference Include="Dapper" Version="2.0.123" />
+		<PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Timer" Version="4.1.0" />
+		<PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Storage" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Data.SqlClient" Version="3.0.1" />
+		<PackageReference Include="Microsoft.NET.Sdk.Functions" Version="4.0.1" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Http" Version="3.1.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
+		<PackageReference Include="Microsoft.Azure.WebJobs.Script.ExtensionsMetadataGenerator" Version="4.0.1" />
+		<PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Abstractions" Version="1.1.0" />
 	</ItemGroup>
 	<ItemGroup>
 		<None Update="host.json">

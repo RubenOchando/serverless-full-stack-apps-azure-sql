@@ -1,5 +1,6 @@
 using System;
 using System.Net.Http;
+using Microsoft.Azure.Functions.Worker.Extensions.Timer;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
@@ -9,7 +10,7 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 
 namespace GetBusData
-{    
+{
     public static class GetBusData
     {
         [FunctionName("GetBusData")]
@@ -17,7 +18,7 @@ namespace GetBusData
         {
             var m = new BusDataManager(log);
             await m.ProcessBusData();
+            Console.WriteLine (myTimer);
         }
-
     }
 }
