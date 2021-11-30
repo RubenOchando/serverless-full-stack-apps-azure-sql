@@ -1,6 +1,6 @@
 using System;
 using System.Net.Http;
-using Microsoft.Azure.Functions.Worker.Extensions.Timer;
+using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
